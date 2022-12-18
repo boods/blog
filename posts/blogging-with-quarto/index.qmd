@@ -1,0 +1,117 @@
+---
+title: "Blogging with Quarto"
+author: "Phil Young"
+date: "2022-12-18"
+categories: [blogging, programming]
+jupyter: python3
+image: "quarto.png"
+---
+
+I learn best when I've forced to explain what I've learned to someone else. 
+For some time, I've been thinking about starting a blog to document my learnings about stuff that interests me.
+Some of that stuff is programming related, so in looking for a blogging tool, I wanted something that would support capturing code examples. 
+I've used Jupyter notebooks recently to experiment with Python and machine learning, and of course, using git and github feels somewhat ubiquitous for managing source code these days. 
+
+I set about searching out a tool that would support blogging using both Jupyter Notebooks and github, and stumbled across Quarto. 
+
+
+## Install and Setup Quarto
+
+I began by following the Quarto [Getting Started](https://quarto.org/docs/get-started/) guide.
+
+Installing the Quarto CLI on my Mac was smooth, as was setup of the [VS Code extension](https://marketplace.visualstudio.com/items?itemName=quarto.quarto).
+
+Initially, I skipppd the authoring section; having used markdown and Jupyter Notebooks before, I was hopeful that the authoring features I was looking for would be well covered. 
+
+Next, I jumped to the Quarto [Creating a Blog](https://quarto.org/docs/websites/website-blog.html) guide.
+With VS Code well setup now, I was able to quickly bootstrap a new blogging project.
+
+The sample project contained: 
+
+* `_quarto.yml` - Quarto project file
+* `index.qmd` - the blog home page
+* `about.qmd` and `profile.jpg` - blog about page and sample picture
+* `posts/` - a folder for blog posts, with two sample posts; each post is contained with a subfolder, and `index.qmd` file and any other content
+
+The layout felt simple and intuitive. Rather than customise heavily, I made a single change to the Quarto project to adjust the theme, from `cosmo` to `sketchy`: 
+```
+format:
+  html:
+    theme: sketchy
+    css: styles.css
+```
+
+## Github Integration and Publishing
+
+Keen to get a feel for the github integration and publishing process, I jumped to the [github pages publishing](https://quarto.org/docs/publishing/github-pages.html) guide.
+
+Quarto supports three modes of publishing: 
+
+1. render locally and publish static html
+2. use the `quarto publish` command
+3. use github actions, to render committed changes, and auto commit the content
+
+I deliberated between option 2 and 3; both ensured the raw content was in github; in the end opting for option 2; it does mean editing the blog on a system setup to use Quarto, but I would typically want to preview posts locally before publishing, and I prefer having control over git histories, so tend to avoid tools that make automatic commits. 
+
+My next steps: 
+
+* create a repo in github; mine is called `blog``, and you can view the source [here](https://github.com/boods/blog)
+* publish the template project, by creating a local git repo, and pushing it to the main branch in github; github provides instructions for this, when creating the repo; however, to ensure I didn't publish anything except the required Quarto source, I also created the following `.gitignore` file: 
+```
+/.quarto/
+/_site/
+```
+* in github, create a `gh-pages` branch
+* under repo settings, under `pages`, ensure `Source` is set to `Deploy from branch`, and the selected branch is `gh-pages`
+* from the terminal, run `quarto publish gh-pages`
+
+At this point, the blog was published and visible in the browser. To verify the flow, I then edited the about page, commited the changes to main and re-ran the publish step. 
+
+## Authoring with Jupyter
+
+With the blog published, the last step was to prove authoring and publishing some non-trivial content. using Jupyter. 
+
+Let's start with some basic syntax:
+```{python}
+#| label: basic-maths
+#| code-line-numbers: true
+
+# This code snippet adds 1 + 1
+def add(x, y):
+    return x + y
+
+x = 1
+y = 1
+z = add(x, y)
+
+print("{0} + {1} = {2}".format(x, y, z))
+```
+
+Lastly, let's try an example figure, @fig-polar : 
+
+```{python}
+#| label: fig-polar
+#| code-line-numbers: true
+#| fig-cap: "An example line plot on a polar axis"
+
+import numpy as np
+import matplotlib.pyplot as plt
+
+r = np.arange(0, 2, 0.01)
+theta = 2 * np.pi * r
+fig, ax = plt.subplots(
+  subplot_kw = {'projection': 'polar'} 
+)
+ax.plot(theta, r)
+ax.set_rticks([0.5, 1, 1.5, 2])
+ax.grid(True)
+plt.show()
+```
+
+Some useful references: 
+
+* [Quarto](https://quarto.org/)
+* [Quarto Blogging Guide](https://quarto.org/docs/websites/website-blog.html)
+* [Quarto Guide to Publishing via Github Pages](https://quarto.org/docs/publishing/github-pages.html)
+* [Github Pages](https://pages.github.com/)
+
