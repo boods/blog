@@ -1,19 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://boods.github.io/blog/posts/post-with-code/index.html</loc>
-    <lastmod>2022-12-17T23:29:04.195Z</lastmod>
-  </url>
-  <url>
-    <loc>https://boods.github.io/blog/posts/welcome/index.html</loc>
-    <lastmod>2022-12-17T23:29:04.466Z</lastmod>
+    <loc>https://boods.github.io/blog/posts/blogging-with-quarto/index.html</loc>
+    <lastmod>2022-12-18T01:27:31.986Z</lastmod>
   </url>
   <url>
     <loc>https://boods.github.io/blog/index.html</loc>
-    <lastmod>2022-12-17T23:29:04.755Z</lastmod>
+    <lastmod>2022-12-18T01:27:32.257Z</lastmod>
   </url>
   <url>
     <loc>https://boods.github.io/blog/about.html</loc>
-    <lastmod>2022-12-17T23:29:05.004Z</lastmod>
+    <lastmod>2022-12-18T01:27:32.504Z</lastmod>
   </url>
 </urlset>

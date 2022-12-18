@@ -1,24 +1,38 @@
 [
   {
-    "objectID": "posts/post-with-code/index.html",
-    "href": "posts/post-with-code/index.html",
-    "title": "Post With Code",
+    "objectID": "posts/blogging-with-quarto/index.html",
+    "href": "posts/blogging-with-quarto/index.html",
+    "title": "Blogging with Quarto",
     "section": "",
-    "text": "This is a post with executable code."
+    "text": "I learn best when I’ve forced to explain what I’ve learned to someone else. For some time, I’ve been thinking about starting a blog to document my learnings about stuff that interests me. Some of that stuff is programming related, so in looking for a blogging tool, I wanted something that would support capturing code examples. I’ve used Jupyter notebooks recently to experiment with Python and machine learning, and of course, using git and github feels somewhat ubiquitous for managing source code these days.\nI set about searching out a tool that would support blogging using both Jupyter Notebooks and github, and stumbled across Quarto."
   },
   {
-    "objectID": "posts/welcome/index.html",
-    "href": "posts/welcome/index.html",
-    "title": "Welcome To My Blog",
-    "section": "",
-    "text": "This is the first post in a Quarto blog. Welcome!\n\nSince this post doesn’t specify an explicit image, the first image in the post will be used in the listing page of posts."
+    "objectID": "posts/blogging-with-quarto/index.html#install-and-setup-quarto",
+    "href": "posts/blogging-with-quarto/index.html#install-and-setup-quarto",
+    "title": "Blogging with Quarto",
+    "section": "Install and Setup Quarto",
+    "text": "Install and Setup Quarto\nI began by following the Quarto Getting Started guide.\nInstalling the Quarto CLI on my Mac was smooth, as was setup of the VS Code extension.\nInitially, I skipppd the authoring section; having used markdown and Jupyter Notebooks before, I was hopeful that the authoring features I was looking for would be well covered.\nNext, I jumped to the Quarto Creating a Blog guide. With VS Code well setup now, I was able to quickly bootstrap a new blogging project.\nThe sample project contained:\n\n_quarto.yml - Quarto project file\nindex.qmd - the blog home page\nabout.qmd and profile.jpg - blog about page and sample picture\nposts/ - a folder for blog posts, with two sample posts; each post is contained with a subfolder, and index.qmd file and any other content\n\nThe layout felt simple and intuitive. Rather than customise heavily, I made a single change to the Quarto project to adjust the theme, from cosmo to sketchy:\nformat:\n  html:\n    theme: sketchy\n    css: styles.css"
+  },
+  {
+    "objectID": "posts/blogging-with-quarto/index.html#github-integration-and-publishing",
+    "href": "posts/blogging-with-quarto/index.html#github-integration-and-publishing",
+    "title": "Blogging with Quarto",
+    "section": "Github Integration and Publishing",
+    "text": "Github Integration and Publishing\nKeen to get a feel for the github integration and publishing process, I jumped to the github pages publishing guide.\nQuarto supports three modes of publishing:\n\nrender locally and publish static html\nuse the quarto publish command\nuse github actions, to render committed changes, and auto commit the content\n\nI deliberated between option 2 and 3; both ensured the raw content was in github; in the end opting for option 2; it does mean editing the blog on a system setup to use Quarto, but I would typically want to preview posts locally before publishing, and I prefer having control over git histories, so tend to avoid tools that make automatic commits.\nMy next steps:\n\ncreate a repo in github; mine is called `blog``, and you can view the source here\npublish the template project, by creating a local git repo, and pushing it to the main branch in github; github provides instructions for this, when creating the repo; however, to ensure I didn’t publish anything except the required Quarto source, I also created the following .gitignore file:\n\n/.quarto/\n/_site/\n\nin github, create a gh-pages branch\nunder repo settings, under pages, ensure Source is set to Deploy from branch, and the selected branch is gh-pages\nfrom the terminal, run quarto publish gh-pages\n\nAt this point, the blog was published and visible in the browser. To verify the flow, I then edited the about page, commited the changes to main and re-ran the publish step."
+  },
+  {
+    "objectID": "posts/blogging-with-quarto/index.html#authoring-with-jupyter",
+    "href": "posts/blogging-with-quarto/index.html#authoring-with-jupyter",
+    "title": "Blogging with Quarto",
+    "section": "Authoring with Jupyter",
+    "text": "Authoring with Jupyter\nWith the blog published, the last step was to prove authoring and publishing some non-trivial content. using Jupyter.\nLet’s start with some basic syntax:\n\n\nCode\n# This code snippet adds 1 + 1\ndef add(x, y):\n    return x + y\n\nx = 1\ny = 1\nz = add(x, y)\n\nprint(\"{0} + {1} = {2}\".format(x, y, z))\n\n\n1 + 1 = 2\n\n\nLastly, let’s try an example figure, Figure 1 :\n\n\nCode\nimport numpy as np\nimport matplotlib.pyplot as plt\n\nr = np.arange(0, 2, 0.01)\ntheta = 2 * np.pi * r\nfig, ax = plt.subplots(\n  subplot_kw = {'projection': 'polar'} \n)\nax.plot(theta, r)\nax.set_rticks([0.5, 1, 1.5, 2])\nax.grid(True)\nplt.show()\n\n\n\n\n\nFigure 1: An example line plot on a polar axis\n\n\n\n\nSome useful references:\n\nQuarto\nQuarto Blogging Guide\nQuarto Guide to Publishing via Github Pages\nGithub Pages"
   },
   {
     "objectID": "index.html",
     "href": "index.html",
     "title": "Bood’s Blog",
     "section": "",
-    "text": "Post With Code\n\n\n\n\n\n\n\nnews\n\n\ncode\n\n\nanalysis\n\n\n\n\n\n\n\n\n\n\n\nDec 18, 2022\n\n\nHarlow Malloc\n\n\n\n\n\n\n  \n\n\n\n\nWelcome To My Blog\n\n\n\n\n\n\n\nnews\n\n\n\n\n\n\n\n\n\n\n\nDec 15, 2022\n\n\nTristan O’Malley\n\n\n\n\n\n\nNo matching items"
+    "text": "Blogging with Quarto\n\n\n\n\n\n\n\nblogging\n\n\nprogramming\n\n\n\n\n\n\n\n\n\n\n\nDec 18, 2022\n\n\nPhil Young\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "about.html",
